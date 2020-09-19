@@ -1,0 +1,30 @@
+<h1>Lets Play , <%= @name %></h1>
+
+<p>You need to guess randomly choosed number between 1 and 100(1 and 100 are included). You have 7 try total!</p>
+<p> <%= @name %>, You are making your <%= @number_of_guess +1 %>. Guess </p>
+<div>
+  <form method="post" action="/number_guessed" >
+  <input type="hidden" name="_method" value="put"/>
+    <fieldset>
+      <label for="content">Enter Your Number</label>
+      <input type="text" name="guessed_number"/>
+    </fieldset>
+    <input type="submit">
+  </form>
+</div>
+
+<% for i in 0..6 %> 
+    <% if @guessed_numbers_list[i] == "__" %>
+        <p> <%= @guessed_numbers_list[i] %> </p>
+    <% elsif @guessed_numbers_list[i] > @random_number + 10 %>
+        <p> <%= @guessed_numbers_list[i] %> way too high</p>
+    <% elsif @guessed_numbers_list[i] < @random_number -10 %>
+        <p> <%= @guessed_numbers_list[i] %> way too low</p>
+    <% elsif @guessed_numbers_list[i] < @random_number %>
+        <p> <%= @guessed_numbers_list[i] %> close but low</p>
+        <% elsif @guessed_numbers_list[i] > @random_number %>
+        <p> <%= @guessed_numbers_list[i] %> close but high</p>
+    <% else %>
+        <p> <%= @guessed_numbers_list[i] %> you find it, Bravo !!!</p>
+    <% end %>
+<% end %>
