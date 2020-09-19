@@ -1,0 +1,28 @@
+
+
+<h1> <%= @result %> </h1>
+
+<p>Random Number was <%= @random_number %>  </p>
+
+<h2> Your guesses were as below</h2>
+<% for i in 0..6 %> 
+    <% if @guessed_numbers_list[i] == "__" %>
+        <p> <%= @guessed_numbers_list[i] %> </p>
+    <% elsif @guessed_numbers_list[i] > @random_number + 10 %>
+        <p> <%= @guessed_numbers_list[i] %> way too high</p>
+    <% elsif @guessed_numbers_list[i] < @random_number -10 %>
+        <p> <%= @guessed_numbers_list[i] %> way too low</p>
+    <% elsif @guessed_numbers_list[i] < @random_number %>
+        <p> <%= @guessed_numbers_list[i] %> close but low</p>
+        <% elsif @guessed_numbers_list[i] > @random_number %>
+        <p> <%= @guessed_numbers_list[i] %> close but high</p>
+    <% else %>
+        <p> <%= @guessed_numbers_list[i] %> you got it, Bravo !!!</p>
+    <% end %>
+<% end %>
+
+<div>
+    <form method="get" action="/">
+        <input class='btn btn-primary' type='submit' value='Play Again'>
+    </form>
+</div>
